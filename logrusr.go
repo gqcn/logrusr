@@ -78,7 +78,11 @@ func New(l logrus.FieldLogger, opts ...Option) logr.Logger {
 // NewLoggerWithFormatter will return a new logr.Logger from a
 // logrus.FieldLogger that uses provided function to format complex data types.
 func NewLoggerWithFormatter(l logrus.FieldLogger, formatter func(interface{}) string, name ...string) logr.Logger {
-	return New(l)
+	return New(
+		l,
+		WithName(name...),
+		WithFormatter(formatter),
+	)
 }
 
 // Init receives optional information about the library.
